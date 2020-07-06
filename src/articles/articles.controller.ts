@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Post, ValidationPipe, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Body, Post, ValidationPipe, BadRequestException, Query } from '@nestjs/common';
 import { ArticlesService } from './articles.service';
 import { Articles } from './articles.entity';
 import { isUndefined } from 'util';
@@ -15,7 +15,7 @@ export class ArticlesController {
     }
 
     @Get('/find')
-    getWithContent(@Body(ValidationPipe) text: Articles): Promise<Articles[]> {
+    getWithContent(@Query() text: Articles): Promise<Articles[]> {
         const { content } = text;
 
         if (!isUndefined(content) && content !== '') {
@@ -26,7 +26,7 @@ export class ArticlesController {
     }
 
     @Post('/create')
-    CreateNewArticle(@Body(ValidationPipe) text: Articles) {
+    CreateNewArticle(@Query() text: Articles) {
         const { content } = text;
 
         if (!isUndefined(content) && content !== '') {
