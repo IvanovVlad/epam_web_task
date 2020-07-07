@@ -26,4 +26,8 @@ export class SearchService {
 
         return sa;
     }
+
+    async getFromDb(): Promise<SearchItem[]> {
+        return await this.searchRepository.getFromDb();
+    }
 }

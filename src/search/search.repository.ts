@@ -21,4 +21,8 @@ export class SearchRepository extends Repository<SearchItem> {
             throw new Error(err);
         }
     }
+
+    async getFromDb(): Promise<SearchItem[]>{
+        return await this.find();
+    }
 }

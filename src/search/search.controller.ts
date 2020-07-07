@@ -1,5 +1,6 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import { SearchService } from './search.service';
+import { SearchItem } from './search.entity';
 
 @Controller('search')
 export class SearchController {
@@ -8,7 +9,12 @@ export class SearchController {
     ) { }
 
     @Get()
-    searchInGoogle(@Req() req) {
+    searchInGoogle(@Req() req): Promise<SearchItem[]> {
         return this.searchService.searchInGoogle(req.query);
+    }
+
+    @Get('/db')
+    getFromDb(): Promise<SearchItem[]> {
+        return this.searchService.getFromDb();
     }
 }
