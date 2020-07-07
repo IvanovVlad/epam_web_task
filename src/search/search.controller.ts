@@ -10,7 +10,7 @@ export class SearchController {
 
     @Get()
     searchInGoogle(@Req() req): Promise<SearchItem[]> {
-        return this.searchService.searchInGoogle(req.query);
+        return this.searchService.searchInGoogle(req.query.query);
     }
 
     @Get('/db')

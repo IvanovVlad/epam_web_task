@@ -14,7 +14,7 @@ export class SearchService {
         const items = await this.searchRepository.getSearch(query);
         const sa = [];
         this.searchRepository.clear();
-        
+
         items.forEach(i => {
             const searchItem = new SearchItem();
             searchItem.link = i.link;
